@@ -1,0 +1,9 @@
+[Unit]
+Description=Enable write access to screen brightness
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/simple-brightness.sh -init
+
+[Install]
+WantedBy=default.target
