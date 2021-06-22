@@ -43,5 +43,9 @@ case $1 in
     -dec)
         dec_brightness $amt
         ;;
+    -get)
+        get_brightness
+        echo $old
+        ;;
 esac
 
