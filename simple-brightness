@@ -21,7 +21,6 @@ inc_brightness () {
 }
 
 write_access() {
-    sleep 1
     chmod 666 $path
 }
 

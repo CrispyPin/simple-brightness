@@ -3,6 +3,7 @@ Description=Enable write access to screen brightness
 
 [Service]
 Type=oneshot
+ExecStartPre=/bin/sleep 1
 ExecStart=/usr/bin/simple-brightness init
 
 [Install]
