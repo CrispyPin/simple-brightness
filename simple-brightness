@@ -8,18 +8,16 @@ get_brightness () {
 }
 
 set_brightness () {
-    echo $1 > $path
-    echo brightness set to $1
+    new=$1
+    new=$(( $new>0 ? $new : 0 ))
+    new=$(( $new<255 ? $new : 255 ))
+    echo $new > $path
+    echo brightness set to $new
 }
 
 inc_brightness () {
     get_brightness
     set_brightness $(( $old + $1 ))
-}
-
-dec_brightness () {
-    get_brightness
-    set_brightness $(( $old - $1 ))
 }
 
 write_access() {
@@ -28,22 +26,22 @@ write_access() {
 }
 
 
-amt="${2:-15}"
+amt="${2:-16}"
 
 case $1 in
-    -init)
+    -init|init)
         write_access
         ;;
-    -set)
+    -set|set)
         set_brightness $amt
         ;;
-    -inc)
+    -inc|inc)
         inc_brightness $amt
         ;;
-    -dec)
-        dec_brightness $amt
+    -dec|dec)
+        inc_brightness -$amt
         ;;
-    -get)
+    -get|get)
         get_brightness
         echo $old
         ;;
